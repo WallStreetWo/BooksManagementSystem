@@ -1,0 +1,74 @@
+@model Member
+
+@{
+    ViewData["Title"] = "Update Member";
+}
+
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1>Member Information</h1>
+                </div>
+            </div>
+        </div>
+        <!-- /.container-fluid -->
+    </section>
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row">
+                <!-- left column -->
+                <div class="col-lg-12">
+                    <!-- general form elements -->
+                    <div class="card card-primary">
+                        <div class="card-header">
+                            <h3 class="card-title">Update Member Information</h3>
+                        </div>
+                        <!-- /.card-header -->
+                        <!-- form start -->
+                        <form asp-action="Edit">
+                            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                            <input type="hidden" asp-for="MemberID" />
+                            <div class="card-body">
+                                <div class="form-group">
+                                    <div class="row">
+
+                                        <div class="col-md-5">
+                                            <label asp-for="Name">Full Name:</label>
+                                            <input asp-for="Name" class="form-control" placeholder="Please enter Full Name">
+                                            <span asp-validation-for="Name" class="text-danger"></span>
+                                        </div>
+                                        <div class="col-md-5 offset-md-1">
+                                            <label asp-for="Address">Physical Address:</label>
+                                            <input asp-for="Address" class="form-control" placeholder="Please enter Physical Address">
+                                            <span asp-validation-for="Address" class="text-danger"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="row">
+
+                                        <div class="col-md-5">
+                                            <label asp-for="PhoneNumber">Publication Year:</label>
+                                            <input asp-for="PhoneNumber" class="form-control" placeholder="(000) 000 0000">
+                                            <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+                                        </div>
+                                </div>
+                                <div class="card-footer">
+                                    <button type="submit" value="Create" class="btn btn-outline-primary">Update</button>
+                                    <a asp-area="" asp-controller="Members" asp-action="Index" class="btn btn-outline-secondary" role="button">Back</a>
+
+                                </div>
+                            </div>
+                        </form>
+                        <!--FORM ENDS HERE-->
+                    </div>
+                    <!-- /.card -->
+                </div>
+            </div>
+        </div>
+    </section>
+</div>

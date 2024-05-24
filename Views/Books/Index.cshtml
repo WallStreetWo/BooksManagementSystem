@@ -19,7 +19,7 @@
         <div class="card">
             
             <div class="card-body p-0">
-                <table class="d-lg-table table-striped project">
+                <table class="table table-striped">
                     <thead>
                         <tr>
 
@@ -51,8 +51,8 @@
                                      @Html.DisplayFor(modelItem => item.PublicationYear)
                                 </td>
                                 <td>
-                                   <a asp-action="Edit" asp-route-id="@item.BookID"><i class="far fa-edit fa-lg"></i></a>
-                                   <a asp-action="Delete" asp-route-id="@item.BookID" class="text-danger ml-1" onclick="return confirm('Are you sure you want to Remove Customer?')"><i class="far fa-trash-alt fa-lg"></i></a>
+                                   <a asp-action="Edit" asp-route-id="@item.BookID"><i class="fa-regular fa-pen-to-square"></i></a>
+                                   <a asp-action="Delete" asp-route-id="@item.BookID" class="text-danger ml-1" onclick="return confirm('Are you sure you want to Remove Customer?')"><i class="fa-solid fa-trash"></i></a>
                                 </td>
                             </tr>
                         }

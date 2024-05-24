@@ -1,0 +1,68 @@
+@model IEnumerable<Member>
+
+@{
+    ViewData["Title"] = "Index";
+    
+}
+
+<div class="content-wrapper">
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1>Member Information</h1>
+                </div>
+            </div>
+        </div><!-- /.container-fluid -->
+    </section>
+    <section class="content">
+        <div class="card">
+            
+            <div class="card-body p-0">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+
+                            <th style="width:10%">
+                                Full Name
+                            </th>
+                            <th style="width:10%">
+                                Address
+                            </th>
+                            <th style="width:10%">
+                                Phone Number
+                            </th>
+                            <th style="width:10%">
+                                <a asp-action="Create" class="btn btn-outline-success"><i class="far fa-plus-square"></i> Add Member</a>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach(var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                     @Html.DisplayFor(modelItem => item.Name)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Address)
+                                </td>
+                                <td>
+                                     @Html.DisplayFor(modelItem => item.PhoneNumber)
+                                </td>
+                                <td>
+                                   <a asp-action="Edit" asp-route-id="@item.MemberID"><i class="fa-regular fa-pen-to-square"></i></a>
+                                   <a asp-action="Delete" asp-route-id="@item.MemberID" class="text-danger ml-1" onclick="return confirm('Are you sure you want to Remove Customer?')"><i class="fa-solid fa-trash"></i></a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+
+                </table>
+                
+            </div>
+
+        </div>
+
+    </section>
+</div>
