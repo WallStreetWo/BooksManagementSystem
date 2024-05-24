@@ -40,7 +40,9 @@
                             <th>
                                 @Html.ActionLink("Phone Number", "Index", new { sortOrder = ViewBag.PhoneNumberSortParm, currentFilter = ViewData["CurrentFilter"] })
                             </th>
-                            <th></th>
+                            <th>
+                                <a asp-action="Create" class="btn btn-outline-success"><i class="far fa-plus-square"></i> Add Member</a>
+                            </th>
                         </tr>
                     </thead>
                     <tbody>
