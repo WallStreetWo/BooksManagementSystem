@@ -1,13 +1,11 @@
-using System.Data;
-using Microsoft.Extensions.Configuration;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using BooksManagementSystem.Models;
 using Microsoft.Data.SqlClient;
+using Microsoft.Extensions.Configuration;
+
 
 namespace BooksManagementSystem.Data;
-
-
 public class LibraryDbContext
 {
     private readonly string _connectionString;

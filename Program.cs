@@ -1,7 +1,14 @@
+using BooksManagementSystem.Data;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+// Register the LibraryDbContext as a singleton
+builder.Services.AddSingleton<LibraryDbContext>();
 
 var app = builder.Build();
 
@@ -25,3 +32,4 @@ app.MapControllerRoute(
     pattern: "{controller=Home}/{action=Index}/{id?}");
 
 app.Run();
+

@@ -147,3 +147,4 @@ C:\Users\ndabe\Desktop\BooksManagementSystem\obj\Debug\net8.0\refint\BooksManage
 C:\Users\ndabe\Desktop\BooksManagementSystem\obj\Debug\net8.0\BooksManagementSystem.pdb
 C:\Users\ndabe\Desktop\BooksManagementSystem\obj\Debug\net8.0\BooksManagementSystem.genruntimeconfig.cache
 C:\Users\ndabe\Desktop\BooksManagementSystem\obj\Debug\net8.0\ref\BooksManagementSystem.dll
+C:\Users\ndabe\Desktop\BooksManagementSystem\obj\Debug\net8.0\BooksManagementSystem.sourcelink.json
