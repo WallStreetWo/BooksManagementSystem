@@ -1,0 +1,74 @@
+@model IEnumerable<dynamic>
+
+@{
+    ViewData["Title"] = "Index";
+    
+}
+
+<div class="content-wrapper">
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1>Borrowing Information</h1>
+                </div>
+            </div>
+        </div><!-- /.container-fluid -->
+    </section>
+    <section class="content">
+        <div class="card">
+            
+            <div class="card-body p-0">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+
+                            <th style="width:10%">
+                                Book Title
+                            </th>
+                            <th style="width:10%">
+                                Member Name
+                            </th>
+                            <th style="width:10%">
+                                Borrow Date
+                            </th>
+                            <th style="width:10%">
+                                Return Date
+                            </th>
+                            <th style="width:10%">
+                                <a asp-action="Create" class="btn btn-outline-success"><i class="far fa-plus-square"></i> Add Borrower</a>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach(var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    @item.BookTitle
+                                </td>
+                                <td>
+                                     @item.MemberName
+                                </td>
+                                <td>
+                                    @item.BorrowDate.ToString("d")
+                                </td>
+                                <td>
+                                     @item.ReturnDate?.ToString("d")
+                                </td>
+                                <td>
+                                   <a asp-action="Edit" asp-route-id="@item.BorrowingID"><i class="fa-regular fa-pen-to-square"></i></a>
+                                   <a asp-action="Delete" asp-route-id="@item.BorrowingID" class="text-danger ml-1" onclick="return confirm('Are you sure you want to Remove Customer?')"><i class="fa-solid fa-trash"></i></a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+
+                </table>
+                
+            </div>
+
+        </div>
+
+    </section>
+</div>
