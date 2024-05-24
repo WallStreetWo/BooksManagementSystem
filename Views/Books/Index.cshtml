@@ -1,8 +1,7 @@
-@model IEnumerable<Book>
-
+@model X.PagedList.IPagedList<BooksManagementSystem.Models.Book>
+@using X.PagedList.Mvc.Core;
 @{
-    ViewData["Title"] = "Index";
-    
+    ViewData["Title"] = "Books";
 }
 
 <div class="content-wrapper">
@@ -10,59 +9,60 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>Book Information</h1>
+                    <h1>Books</h1>
                 </div>
             </div>
-        </div><!-- /.container-fluid -->
+        </div>
     </section>
     <section class="content">
         <div class="card">
-            
+            <div class="card-header">
+                <form asp-action="Index" method="get">
+                    <div class="input-group">
+                        <input type="text" name="searchString" value="@ViewData["CurrentFilter"]" class="form-control" placeholder="Search by Title or Author">
+                        <span class="input-group-btn">
+                            <button class="btn btn-default" type="submit">Search</button>
+                        </span>
+                    </div>
+                </form>
+            </div>
             <div class="card-body p-0">
                 <table class="table table-striped">
                     <thead>
                         <tr>
-
-                            <th style="width:10%">
-                                Title
+                            <th>
+                                @Html.ActionLink("Title", "Index", new { sortOrder = ViewBag.TitleSortParm, currentFilter = ViewData["CurrentFilter"] })
                             </th>
-                            <th style="width:10%">
-                                Author
+                            <th>
+                                @Html.ActionLink("Author", "Index", new { sortOrder = ViewBag.AuthorSortParm, currentFilter = ViewData["CurrentFilter"] })
                             </th>
-                            <th style="width:10%">
-                                Publication
+                            <th>
+                                @Html.ActionLink("Publication Year", "Index", new { sortOrder = ViewBag.YearSortParm, currentFilter = ViewData["CurrentFilter"] })
                             </th>
-                            <th style="width:10%">
+                            <th>
                                 <a asp-action="Create" class="btn btn-outline-success"><i class="far fa-plus-square"></i> Add Book</a>
                             </th>
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach(var item in Model)
+                        @foreach (var item in Model)
                         {
                             <tr>
+                                <td>@Html.DisplayFor(modelItem => item.Title)</td>
+                                <td>@Html.DisplayFor(modelItem => item.Author)</td>
+                                <td>@Html.DisplayFor(modelItem => item.PublicationYear)</td>
                                 <td>
-                                     @Html.DisplayFor(modelItem => item.Title)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.Author)
-                                </td>
-                                <td>
-                                     @Html.DisplayFor(modelItem => item.PublicationYear)
-                                </td>
-                                <td>
-                                   <a asp-action="Edit" asp-route-id="@item.BookID"><i class="fa-regular fa-pen-to-square"></i></a>
-                                   <a asp-action="Delete" asp-route-id="@item.BookID" class="text-danger ml-1" onclick="return confirm('Are you sure you want to Remove Customer?')"><i class="fa-solid fa-trash"></i></a>
+                                    <a asp-action="Edit" asp-route-id="@item.BookID"><i class="fa-regular fa-pen-to-square"></i></a>
+                                    <a asp-action="Delete" asp-route-id="@item.BookID" class="text-danger ml-1" onclick="return confirm('Are you sure you want to delete this book?')"><i class="fa-solid fa-trash"></i></a>
                                 </td>
                             </tr>
                         }
                     </tbody>
-
                 </table>
-                
+                <div class="card-footer clearfix">
+                    @Html.PagedListPager(Model, page => Url.Action("Index", new { page, sortOrder = ViewData["CurrentSort"], currentFilter = ViewData["CurrentFilter"] }))
+                </div>
             </div>
-
         </div>
-
     </section>
 </div>

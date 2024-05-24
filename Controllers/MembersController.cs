@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using BooksManagementSystem.Models;
 using System.Linq;
 using BooksManagementSystem.Data;
+using X.PagedList;
+using X.PagedList.Mvc.Core;
 
 namespace BooksManagementSystem.Controllers;
 
@@ -15,9 +17,56 @@ public class MembersController : Controller
         _context = context;
     }
 
-    public async Task<IActionResult> Index()
+    public async Task<IActionResult> Index(string sortOrder, string currentFilter, string searchString, int? page)
     {
-        return View(await _context.GetMembersAsync());
+        ViewData["CurrentSort"] = sortOrder;
+        ViewData["NameSortParm"] = string.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
+        ViewData["AddressSortParm"] = sortOrder == "Address" ? "address_desc" : "Address";
+        ViewData["PhoneSortParm"] = sortOrder == "Phone" ? "phone_desc" : "Phone";
+
+        if (searchString != null)
+        {
+            page = 1;
+        }
+        else
+        {
+            searchString = currentFilter;
+        }
+
+        ViewData["CurrentFilter"] = searchString;
+
+        var members = await _context.GetMembersAsync();
+
+        if (!string.IsNullOrEmpty(searchString))
+        {
+            members = members.Where(m => m.Name.Contains(searchString) || m.Address.Contains(searchString) || m.PhoneNumber.Contains(searchString)).ToList();
+        }
+
+        switch (sortOrder)
+        {
+            case "name_desc":
+                members = members.OrderByDescending(m => m.Name).ToList();
+            break;
+            case "Address":
+                members = members.OrderBy(m => m.Address).ToList();
+            break;
+            case "address_desc":
+                members = members.OrderByDescending(m => m.Address).ToList();
+            break;
+            case "Phone":
+                members = members.OrderBy(m => m.PhoneNumber).ToList();
+            break;
+            case "phone_desc":
+                members = members.OrderByDescending(m => m.PhoneNumber).ToList();
+                break;
+            default:
+                members = members.OrderBy(m => m.Name).ToList();
+            break;
+        }
+
+            int pageSize = 10;
+            int pageNumber = (page ?? 1);
+            return View(members.ToPagedList(pageNumber, pageSize));
     }
 
     public async Task<IActionResult> Details(int? id)

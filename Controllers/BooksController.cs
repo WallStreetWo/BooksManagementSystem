@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using BooksManagementSystem.Models;
 using System.Linq;
 using BooksManagementSystem.Data;
+using X.PagedList;
 
 namespace BooksManagementSystem.Controllers;
 
@@ -16,13 +17,58 @@ public class BooksController : Controller
         {
             _context = context;
         }
-
-        // GET: Books - Display a list of all books
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string sortOrder, string currentFilter, string searchString, int? page)
         {
+            ViewData["CurrentSort"] = sortOrder;
+            ViewData["TitleSortParm"] = string.IsNullOrEmpty(sortOrder) ? "title_desc" : "";
+            ViewData["AuthorSortParm"] = sortOrder == "Author" ? "author_desc" : "Author";
+            ViewData["YearSortParm"] = sortOrder == "Year" ? "year_desc" : "Year";
+
+            if (searchString != null)
+            {
+                page = 1;
+            }
+            else
+            {
+                searchString = currentFilter;
+            }
+
+            ViewData["CurrentFilter"] = searchString;
+
             var books = await _context.GetBooksAsync();
-            return View(books);
+
+            if (!string.IsNullOrEmpty(searchString))
+            {
+                books = books.Where(b => b.Title.Contains(searchString) || b.Author.Contains(searchString)).ToList();
+            }
+
+            switch (sortOrder)
+            {
+                case "title_desc":
+                    books = books.OrderByDescending(b => b.Title).ToList();
+                    break;
+                case "Author":
+                    books = books.OrderBy(b => b.Author).ToList();
+                    break;
+                case "author_desc":
+                    books = books.OrderByDescending(b => b.Author).ToList();
+                    break;
+                case "Year":
+                    books = books.OrderBy(b => b.PublicationYear).ToList();
+                    break;
+                case "year_desc":
+                    books = books.OrderByDescending(b => b.PublicationYear).ToList();
+                    break;
+                    default:
+                    books = books.OrderBy(b => b.Title).ToList();
+                    break;
+            }
+
+            int pageSize = 10;
+            int pageNumber = (page ?? 1);
+            return View(books.ToPagedList(pageNumber, pageSize));
         }
+        
 
         // GET: Books/Details/5 - Display details of a specific book
         public async Task<IActionResult> Details(int? id)
