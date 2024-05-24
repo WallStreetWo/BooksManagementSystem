@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "h1FR58D6Q/Q=",
+  "dgSpecHash": "bE4rdNvD9p8=",
   "success": true,
   "projectFilePath": "C:\\Users\\ndabe\\Desktop\\BooksManagementSystem\\BooksManagementSystem.csproj",
   "expectedPackageFiles": [
@@ -74,7 +74,9 @@
     "C:\\Users\\ndabe\\.nuget\\packages\\system.text.encodings.web\\9.0.0-preview.4.24266.19\\system.text.encodings.web.9.0.0-preview.4.24266.19.nupkg.sha512",
     "C:\\Users\\ndabe\\.nuget\\packages\\system.text.json\\9.0.0-preview.4.24266.19\\system.text.json.9.0.0-preview.4.24266.19.nupkg.sha512",
     "C:\\Users\\ndabe\\.nuget\\packages\\system.threading.channels\\7.0.0\\system.threading.channels.7.0.0.nupkg.sha512",
-    "C:\\Users\\ndabe\\.nuget\\packages\\system.threading.tasks.extensions\\4.5.4\\system.threading.tasks.extensions.4.5.4.nupkg.sha512"
+    "C:\\Users\\ndabe\\.nuget\\packages\\system.threading.tasks.extensions\\4.5.4\\system.threading.tasks.extensions.4.5.4.nupkg.sha512",
+    "C:\\Users\\ndabe\\.nuget\\packages\\x.pagedlist\\9.1.2\\x.pagedlist.9.1.2.nupkg.sha512",
+    "C:\\Users\\ndabe\\.nuget\\packages\\x.pagedlist.mvc.core\\9.1.2\\x.pagedlist.mvc.core.9.1.2.nupkg.sha512"
   ],
   "logs": []
 }

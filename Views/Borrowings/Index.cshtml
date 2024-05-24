@@ -1,8 +1,8 @@
-@model IEnumerable<dynamic>
+@model X.PagedList.IPagedList<dynamic>
+@using X.PagedList.Mvc.Core;
 
 @{
     ViewData["Title"] = "Index";
-    
 }
 
 <div class="content-wrapper">
@@ -17,58 +17,57 @@
     </section>
     <section class="content">
         <div class="card">
-            
+            <div class="card-header">
+                <form asp-action="Index" method="get">
+                    <div class="input-group">
+                        <input type="text" name="searchString" value="@ViewData["CurrentFilter"]" class="form-control" placeholder="Search by Book Title or Member Name">
+                        <span class="input-group-btn">
+                            <button class="btn btn-default" type="submit">Search</button>
+                        </span>
+                    </div>
+                </form>
+            </div>
             <div class="card-body p-0">
                 <table class="table table-striped">
                     <thead>
                         <tr>
-
-                            <th style="width:10%">
-                                Book Title
+                            <th>
+                                @Html.ActionLink("Book Title", "Index", new { sortOrder = ViewBag.BookSortParm, currentFilter = ViewData["CurrentFilter"] })
                             </th>
-                            <th style="width:10%">
-                                Member Name
+                            <th>
+                                @Html.ActionLink("Member Name", "Index", new { sortOrder = ViewBag.MemberSortParm, currentFilter = ViewData["CurrentFilter"] })
                             </th>
-                            <th style="width:10%">
-                                Borrow Date
+                            <th>
+                                @Html.ActionLink("Borrow Date", "Index", new { sortOrder = ViewBag.DateSortParm, currentFilter = ViewData["CurrentFilter"] })
                             </th>
-                            <th style="width:10%">
+                            <th>
                                 Return Date
                             </th>
-                            <th style="width:10%">
+                            <th>
                                 <a asp-action="Create" class="btn btn-outline-success"><i class="far fa-plus-square"></i> Add Borrower</a>
                             </th>
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach(var item in Model)
+                        @foreach (var item in Model)
                         {
                             <tr>
+                                <td>@item.BookTitle</td>
+                                <td>@item.MemberName</td>
+                                <td>@item.BorrowDate.ToString("d")</td>
+                                <td>@item.ReturnDate?.ToString("d")</td>
                                 <td>
-                                    @item.BookTitle
-                                </td>
-                                <td>
-                                     @item.MemberName
-                                </td>
-                                <td>
-                                    @item.BorrowDate.ToString("d")
-                                </td>
-                                <td>
-                                     @item.ReturnDate?.ToString("d")
-                                </td>
-                                <td>
-                                   <a asp-action="Edit" asp-route-id="@item.BorrowingID"><i class="fa-regular fa-pen-to-square"></i></a>
-                                   <a asp-action="Delete" asp-route-id="@item.BorrowingID" class="text-danger ml-1" onclick="return confirm('Are you sure you want to Remove Customer?')"><i class="fa-solid fa-trash"></i></a>
+                                    <a asp-action="Edit" asp-route-id="@item.BorrowingID"><i class="fa-regular fa-pen-to-square"></i></a>
+                                    <a asp-action="Delete" asp-route-id="@item.BorrowingID" class="text-danger ml-1" onclick="return confirm('Are you sure you want to Remove Customer?')"><i class="fa-solid fa-trash"></i></a>
                                 </td>
                             </tr>
                         }
                     </tbody>
-
                 </table>
-                
+                <div class="card-footer">
+                    @Html.PagedListPager(Model, page => Url.Action("Index", new { page, sortOrder = ViewData["CurrentSort"], currentFilter = ViewData["CurrentFilter"] }))
+                </div>
             </div>
-
         </div>
-
     </section>
 </div>

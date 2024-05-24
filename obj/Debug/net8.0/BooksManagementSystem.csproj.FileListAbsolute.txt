@@ -53,6 +53,8 @@ C:\Users\ndabe\Desktop\BooksManagementSystem\bin\Debug\net8.0\System.Runtime.Cac
 C:\Users\ndabe\Desktop\BooksManagementSystem\bin\Debug\net8.0\System.Security.Cryptography.ProtectedData.dll
 C:\Users\ndabe\Desktop\BooksManagementSystem\bin\Debug\net8.0\System.Text.Encodings.Web.dll
 C:\Users\ndabe\Desktop\BooksManagementSystem\bin\Debug\net8.0\System.Text.Json.dll
+C:\Users\ndabe\Desktop\BooksManagementSystem\bin\Debug\net8.0\X.PagedList.dll
+C:\Users\ndabe\Desktop\BooksManagementSystem\bin\Debug\net8.0\X.PagedList.Mvc.Core.dll
 C:\Users\ndabe\Desktop\BooksManagementSystem\bin\Debug\net8.0\cs\Microsoft.CodeAnalysis.resources.dll
 C:\Users\ndabe\Desktop\BooksManagementSystem\bin\Debug\net8.0\de\Microsoft.CodeAnalysis.resources.dll
 C:\Users\ndabe\Desktop\BooksManagementSystem\bin\Debug\net8.0\es\Microsoft.CodeAnalysis.resources.dll
@@ -128,9 +130,11 @@ C:\Users\ndabe\Desktop\BooksManagementSystem\obj\Debug\net8.0\BooksManagementSys
 C:\Users\ndabe\Desktop\BooksManagementSystem\obj\Debug\net8.0\BooksManagementSystem.AssemblyInfoInputs.cache
 C:\Users\ndabe\Desktop\BooksManagementSystem\obj\Debug\net8.0\BooksManagementSystem.AssemblyInfo.cs
 C:\Users\ndabe\Desktop\BooksManagementSystem\obj\Debug\net8.0\BooksManagementSystem.csproj.CoreCompileInputs.cache
+C:\Users\ndabe\Desktop\BooksManagementSystem\obj\Debug\net8.0\BooksManagementSystem.MvcApplicationPartsAssemblyInfo.cs
 C:\Users\ndabe\Desktop\BooksManagementSystem\obj\Debug\net8.0\BooksManagementSystem.MvcApplicationPartsAssemblyInfo.cache
 C:\Users\ndabe\Desktop\BooksManagementSystem\obj\Debug\net8.0\BooksManagementSystem.RazorAssemblyInfo.cache
 C:\Users\ndabe\Desktop\BooksManagementSystem\obj\Debug\net8.0\BooksManagementSystem.RazorAssemblyInfo.cs
+C:\Users\ndabe\Desktop\BooksManagementSystem\obj\Debug\net8.0\BooksManagementSystem.sourcelink.json
 C:\Users\ndabe\Desktop\BooksManagementSystem\obj\Debug\net8.0\staticwebassets.build.json
 C:\Users\ndabe\Desktop\BooksManagementSystem\obj\Debug\net8.0\staticwebassets.development.json
 C:\Users\ndabe\Desktop\BooksManagementSystem\obj\Debug\net8.0\staticwebassets\msbuild.BooksManagementSystem.Microsoft.AspNetCore.StaticWebAssets.props
@@ -147,4 +151,3 @@ C:\Users\ndabe\Desktop\BooksManagementSystem\obj\Debug\net8.0\refint\BooksManage
 C:\Users\ndabe\Desktop\BooksManagementSystem\obj\Debug\net8.0\BooksManagementSystem.pdb
 C:\Users\ndabe\Desktop\BooksManagementSystem\obj\Debug\net8.0\BooksManagementSystem.genruntimeconfig.cache
 C:\Users\ndabe\Desktop\BooksManagementSystem\obj\Debug\net8.0\ref\BooksManagementSystem.dll
-C:\Users\ndabe\Desktop\BooksManagementSystem\obj\Debug\net8.0\BooksManagementSystem.sourcelink.json

@@ -5,6 +5,8 @@ using BooksManagementSystem.Models;
 using System.Linq;
 using BooksManagementSystem.Data;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using X.PagedList;
+using X.PagedList.Mvc.Core;
 
 namespace BooksManagementSystem.Controllers
 {
@@ -17,8 +19,24 @@ namespace BooksManagementSystem.Controllers
             _context = context;
         }
 
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string sortOrder, string currentFilter, string searchString, int? page)
         {
+            ViewData["CurrentSort"] = sortOrder;
+            ViewData["BooksSortParam"] = string.IsNullOrEmpty(sortOrder) ? "book_desc" : "";
+            ViewData["MemberSortParam"] = sortOrder == "Member" ? "member_desc" : "Member";
+            ViewData["DateSortParam"] = sortOrder == "Date" ? "date_desc" : "Date";
+
+            if(searchString != null)
+            {
+                page = 1;
+            }    
+            else
+            {
+                searchString = currentFilter;
+            }
+
+            ViewData["CurrentFilter"] = searchString;
+
             var borrowings = await _context.GetBorrowingsAsync();
             var books = await _context.GetBooksAsync();
             var members = await _context.GetMembersAsync();
@@ -30,9 +48,38 @@ namespace BooksManagementSystem.Controllers
                 MemberName = members.FirstOrDefault(member => member.MemberID == b.MemberID)?.Name,
                 b.BorrowDate,
                 b.ReturnDate
-            }).ToList();
+            });
 
-            return View(borrowingList);
+            if (!string.IsNullOrEmpty(searchString))
+            {
+                borrowingList = borrowingList.Where(b => b.BookTitle.Contains(searchString) || b.MemberName.Contains(searchString));
+            }
+
+            switch (sortOrder)
+            {
+                case "book_desc":
+                    borrowingList = borrowingList.OrderByDescending(b => b.BookTitle);
+                    break;
+                case "Member":
+                    borrowingList = borrowingList.OrderBy(b => b.MemberName);
+                    break;
+                case "member_desc":
+                    borrowingList = borrowingList.OrderByDescending(b => b.MemberName);
+                    break;
+                case "Date":
+                    borrowingList = borrowingList.OrderBy(b => b.BorrowDate);
+                    break;
+                case "date_desc":
+                    borrowingList = borrowingList.OrderByDescending(b => b.BorrowDate);
+                    break;
+                default:
+                    borrowingList = borrowingList.OrderBy(b => b.BookTitle);
+                    break;
+            }
+
+            int pageSize = 10;
+            int pageNumber = (page ?? 1);
+            return View(await borrowingList.ToPagedListAsync(pageNumber, pageSize));
         }
 
         public async Task<IActionResult> Create()
