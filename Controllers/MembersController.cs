@@ -136,30 +136,16 @@ public class MembersController : Controller
         return View(member);
     }
 
-    public async Task<IActionResult> Delete(int? id)
+    public async Task<IActionResult> DeleteMember(int id)
     {
-        if (id == null)
+        var member = await _context.GetMembersAsync();
+        var memberToDelete = member.FirstOrDefault(m => m.MemberID == id);
+        if (memberToDelete != null)
         {
-            return NotFound();
+            await _context.DeleteMemberAsync(id);
         }
-
-        var member = (await _context.GetMembersAsync()).FirstOrDefault(m => m.MemberID == id);
-
-        if (member == null)
-        {
-            return NotFound();
-        }
-
-        return View(member);
-    }
-
-    [HttpPost, ActionName("Delete")]
-    [ValidateAntiForgeryToken]
-    public async Task<IActionResult> DeleteConfirmed(int id)
-    {
-        await _context.DeleteMemberAsync(id);
         return RedirectToAction(nameof(Index));
-    }
+    }   
 
     private bool MemberExists(int id)
     {

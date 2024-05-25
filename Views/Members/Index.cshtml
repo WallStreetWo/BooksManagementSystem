@@ -54,7 +54,7 @@
                                 <td>@item.PhoneNumber</td>
                                 <td>
                                     <a asp-action="Edit" asp-route-id="@item.MemberID"><i class="fa-regular fa-pen-to-square"></i></a>
-                                    <a asp-action="Delete" asp-route-id="@item.MemberID" class="text-danger ml-1" onclick="return confirm('Are you sure you want to delete this member?')"><i class="fa-solid fa-trash"></i></a>
+                                    <a asp-action="DeleteMember" asp-route-id="@item.MemberID" class="text-danger ml-1" onclick="return confirm('Are you sure you want to delete this member?')"><i class="fa-solid fa-trash"></i></a>
                                 </td>
                             </tr>
                         }
