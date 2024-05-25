@@ -1,9 +1,21 @@
-namespace BooksManagementSystem.Models;
+using System.ComponentModel.DataAnnotations;
+using System.Text.RegularExpressions;
 
-public class Member
+namespace BooksManagementSystem.Models
 {
-    public int MemberID { get; set; }
-    public string Name { get; set; }
-    public string Address { get; set; }
-    public string PhoneNumber { get; set; }
+    public class Member
+    {
+        public int MemberID { get; set; }
+
+        [Required]
+        [RegularExpression(@"^[a-zA-Z\s]+$", ErrorMessage = "Name can only contain letters and spaces")]
+        public string Name { get; set; }
+
+        [Required]
+        public string Address { get; set; }
+
+        [Required]
+        [RegularExpression(@"^\d{10}$", ErrorMessage = "Phone number must be exactly 10 digits")]
+        public string PhoneNumber { get; set; }
+    }
 }
