@@ -146,31 +146,16 @@ public class BooksController : Controller
         }
 
         // GET: Books/Delete/5 - Show the form to confirm deletion of a book
-        public async Task<IActionResult> Delete(int? id)
+        public async Task<IActionResult> DeleteBook(int id)
         {
-            if (id == null)
+            var book = await _context.GetBooksAsync();
+            var bookToDelete = book.FirstOrDefault(b => b.BookID == id);
+            if (bookToDelete != null)
             {
-                return NotFound();
+                await _context.DeleteBookAsync(id);
             }
-
-            var books = await _context.GetBooksAsync();
-            var book = books.FirstOrDefault(b => b.BookID == id);
-
-            if (book == null)
-            {
-                return NotFound();
-            }
-
-            return View(book);
-        }
-
-        // POST: Books/Delete/5 - Handle the deletion of a book
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
-        {
-            await _context.DeleteBookAsync(id);
             return RedirectToAction(nameof(Index));
         }
+
 }
 

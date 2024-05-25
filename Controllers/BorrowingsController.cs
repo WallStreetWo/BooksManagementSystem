@@ -157,5 +157,17 @@ namespace BooksManagementSystem.Controllers
 
             return View(borrowing);
         }
+
+        public async Task<IActionResult> DeleteBorrowing(int id)
+        {
+             var borrowings = await _context.GetBorrowingsAsync();
+            var borrowingToDelete = borrowings.FirstOrDefault(b => b.BorrowingID == id);
+            if (borrowingToDelete != null)
+            {
+                await _context.DeleteBorrowingAsync(id);
+            }
+            return RedirectToAction(nameof(Index));
+        }
+
     }
 }

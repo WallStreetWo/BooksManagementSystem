@@ -58,7 +58,7 @@
                                 <td>@item.ReturnDate?.ToString("d")</td>
                                 <td>
                                     <a asp-action="Edit" asp-route-id="@item.BorrowingID"><i class="fa-regular fa-pen-to-square"></i></a>
-                                    <a asp-action="Delete" asp-route-id="@item.BorrowingID" class="text-danger ml-1" onclick="return confirm('Are you sure you want to Remove Customer?')"><i class="fa-solid fa-trash"></i></a>
+                                    <a asp-action="DeleteBorrowing" asp-route-id="@item.BorrowingID" class="text-danger ml-1" onclick="return confirm('Are you sure you want to Remove Borrowing?')"><i class="fa-solid fa-trash"></i></a>
                                 </td>
                             </tr>
                         }
