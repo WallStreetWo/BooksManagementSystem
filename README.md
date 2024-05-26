@@ -18,7 +18,7 @@ Books Management System is an ASP.NET Core MVC application for managing books in
 ## Technologies Used
 
 - ASP.NET Core MVC
-- Stored Procedures
+- The code does not use stored procedures or EF Core. Instead, it directly executes SQL commands within the application code using inline SQL queries.
 - SQL Server
 - X.PagedList
 
